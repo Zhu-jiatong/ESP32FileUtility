@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33502.453
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FileUtility", "FileUtility\FileUtility.vcxitems", "{B2BD4FDA-0747-4DF5-BE9C-BE2ED423DDBF}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleExample", "SimpleExample\SimpleExample.vcxproj", "{1090BF70-B718-4CAF-BA6C-57847A49D910}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Debug|ARM64 = Debug|ARM64
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|ARM = Release|ARM
+		Release|ARM64 = Release|ARM64
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1090BF70-B718-4CAF-BA6C-57847A49D910}.Debug|ARM.ActiveCfg = Debug|ARM
+		{1090BF70-B718-4CAF-BA6C-57847A49D910}.Debug|ARM.Build.0 = Debug|ARM
+		{1090BF70-B718-4CAF-BA6C-57847A49D910}.Debug|ARM.Deploy.0 = Debug|ARM
+		{1090BF70-B718-4CAF-BA6C-57847A49D910}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{1090BF70-B718-4CAF-BA6C-57847A49D910}.Debug|ARM64.Build.0 = Debug|ARM64
+		{1090BF70-B718-4CAF-BA6C-57847A49D910}.Debug|ARM64.Deploy.0 = Debug|ARM64
+		{1090BF70-B718-4CAF-BA6C-57847A49D910}.Debug|x64.ActiveCfg = Debug|x64
+		{1090BF70-B718-4CAF-BA6C-57847A49D910}.Debug|x64.Build.0 = Debug|x64
+		{1090BF70-B718-4CAF-BA6C-57847A49D910}.Debug|x64.Deploy.0 = Debug|x64
+		{1090BF70-B718-4CAF-BA6C-57847A49D910}.Debug|x86.ActiveCfg = Debug|x86
+		{1090BF70-B718-4CAF-BA6C-57847A49D910}.Debug|x86.Build.0 = Debug|x86
+		{1090BF70-B718-4CAF-BA6C-57847A49D910}.Debug|x86.Deploy.0 = Debug|x86
+		{1090BF70-B718-4CAF-BA6C-57847A49D910}.Release|ARM.ActiveCfg = Release|ARM
+		{1090BF70-B718-4CAF-BA6C-57847A49D910}.Release|ARM.Build.0 = Release|ARM
+		{1090BF70-B718-4CAF-BA6C-57847A49D910}.Release|ARM.Deploy.0 = Release|ARM
+		{1090BF70-B718-4CAF-BA6C-57847A49D910}.Release|ARM64.ActiveCfg = Release|ARM64
+		{1090BF70-B718-4CAF-BA6C-57847A49D910}.Release|ARM64.Build.0 = Release|ARM64
+		{1090BF70-B718-4CAF-BA6C-57847A49D910}.Release|ARM64.Deploy.0 = Release|ARM64
+		{1090BF70-B718-4CAF-BA6C-57847A49D910}.Release|x64.ActiveCfg = Release|x64
+		{1090BF70-B718-4CAF-BA6C-57847A49D910}.Release|x64.Build.0 = Release|x64
+		{1090BF70-B718-4CAF-BA6C-57847A49D910}.Release|x64.Deploy.0 = Release|x64
+		{1090BF70-B718-4CAF-BA6C-57847A49D910}.Release|x86.ActiveCfg = Release|x86
+		{1090BF70-B718-4CAF-BA6C-57847A49D910}.Release|x86.Build.0 = Release|x86
+		{1090BF70-B718-4CAF-BA6C-57847A49D910}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {22DCC365-44EA-48AE-AC31-13A1202B4175}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		FileUtility\FileUtility.vcxitems*{1090bf70-b718-4caf-ba6c-57847a49d910}*SharedItemsImports = 4
+		FileUtility\FileUtility.vcxitems*{b2bd4fda-0747-4df5-be9c-be2ed423ddbf}*SharedItemsImports = 9
+	EndGlobalSection
+EndGlobal
