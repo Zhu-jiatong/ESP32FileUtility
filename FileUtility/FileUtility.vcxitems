@@ -19,6 +19,7 @@
     <Text Include="$(MSBuildThisFileDirectory)src\FileUtility.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\DirectoryIterator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)src\FileUtility.cpp" />
   </ItemGroup>
 </Project>
