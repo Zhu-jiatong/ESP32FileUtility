@@ -4,8 +4,6 @@
  Author:	jiaji
 */
 
-#include "DirectoryIterator.h"
-#include "DirectoryIterator.h"
 #include <SD.h>
 #include "FileUtility.h"
 
@@ -18,18 +16,18 @@ void setup()
 	Serial.println("Beginning SD tests...");
 	Serial.println("RAW");
 	FileUtility rootDir(SD, "/");
-	for (auto it = rootDir.iterateDirectory().begin(); it != rootDir.iterateDirectory().end(); ++it)
+	rootDir.initDirectoryIterator();
+	for (auto it = rootDir.begin(); it != rootDir.end(); ++it)
 		Serial.println(static_cast<File&>(*it).path());
-	static_cast<File&>(rootDir).rewindDirectory();
+
 	Serial.println("RANGE");
-	for (auto entry : rootDir.iterateDirectory())
-	{
+	rootDir.initDirectoryIterator();
+	for (auto entry : rootDir)
 		Serial.println(static_cast<File&>(entry).path());
-	}
-	static_cast<File&>(rootDir).rewindDirectory();
+
 	Serial.println("EACH");
-	auto& iterator = rootDir.iterateDirectory();
-	std::for_each(iterator.begin(), iterator.end(),
+	rootDir.initDirectoryIterator();
+	std::for_each(rootDir.begin(), rootDir.end(),
 		[](FileUtility entry) {Serial.println(static_cast<File&>(entry).path()); });
 	Serial.println("END TEST");
 }

@@ -8,9 +8,9 @@
 #include "FileUtility.h"
 
 FileUtility::DirectoryIterator::DirectoryIterator(FileUtility& root, const char* openMode)
-	:m_openMode(openMode), m_root(root)
+	:m_openMode(openMode), m_root(&root)
 {
-	File& internalFile = static_cast<File&>(m_root);
+	File& internalFile = *m_root;
 
 	if (!internalFile.isDirectory())
 		throw std::runtime_error("Is not directory");
@@ -18,31 +18,37 @@ FileUtility::DirectoryIterator::DirectoryIterator(FileUtility& root, const char*
 	m_entry = internalFile.openNextFile(m_openMode);
 }
 
-FileUtility::DirectoryIterator::DirectoryIterator(FileUtility& root)
-	:m_root(root)
+FileUtility::DirectoryIterator::DirectoryIterator()
 {
 }
 
 FileUtility::DirectoryIterator::value_type FileUtility::DirectoryIterator::operator*()
 {
-	return FileUtility(*m_root.m_fs, m_entry);
+	return FileUtility(*m_root->m_fs, m_entry);
 }
 
-FileUtility::DirectoryIterator::value_type FileUtility::DirectoryIterator::operator->()
+FileUtility::DirectoryIterator& FileUtility::DirectoryIterator::operator++(int)
 {
-	return **this;
+	DirectoryIterator temp(*this);
+	operator++();
+	return temp;
 }
 
 FileUtility::DirectoryIterator& FileUtility::DirectoryIterator::operator++()
 {
-	File& internalFile = static_cast<File&>(m_root);
+	File& internalFile = *m_root;
 	m_entry = internalFile.openNextFile(m_openMode);
 	return *this;
 }
 
-bool FileUtility::DirectoryIterator::operator!=(const DirectoryIterator& other)const
+bool FileUtility::DirectoryIterator::operator==(const DirectoryIterator& other) const
 {
-	return m_entry != other.m_entry;
+	return m_entry == other.m_entry;
+}
+
+bool FileUtility::DirectoryIterator::operator!=(const DirectoryIterator& other) const
+{
+	return !operator==(other);
 }
 
 FileUtility::DirectoryIterator FileUtility::DirectoryIterator::begin()
@@ -52,5 +58,5 @@ FileUtility::DirectoryIterator FileUtility::DirectoryIterator::begin()
 
 FileUtility::DirectoryIterator FileUtility::DirectoryIterator::end()
 {
-	return DirectoryIterator(m_root);
+	return DirectoryIterator();
 }

@@ -29,7 +29,9 @@ public:
 	operator File& ();
 
 	class DirectoryIterator;
-	DirectoryIterator& iterateDirectory(const char* openMode = FILE_READ);
+	void initDirectoryIterator(const char* openMode = FILE_READ);
+	DirectoryIterator begin();
+	DirectoryIterator end();
 
 private:
 	FS* m_fs = nullptr;
@@ -41,22 +43,23 @@ class FileUtility::DirectoryIterator
 {
 public:
 	using iterator_category = std::input_iterator_tag;
-	using value_type = FileUtility;
 	using difference_type = std::ptrdiff_t;
+	using value_type = FileUtility;
 	using pointer = value_type*;
 	using reference = value_type&;
 
 	DirectoryIterator(FileUtility& root, const char* openMode);
-	DirectoryIterator(FileUtility& root);
+	DirectoryIterator();
 	DirectoryIterator begin();
 	DirectoryIterator end();
 	DirectoryIterator& operator++();
+	DirectoryIterator& operator++(int);
+	bool operator==(const DirectoryIterator& other) const;
 	bool operator!=(const DirectoryIterator& other) const;
 	value_type operator*();
-	value_type operator->();
 
 private:
-	FileUtility& m_root;
+	FileUtility* m_root=nullptr;
 	File m_entry;
 	const char* m_openMode = nullptr;
 };

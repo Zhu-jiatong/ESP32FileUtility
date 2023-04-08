@@ -44,8 +44,18 @@ FileUtility::operator File& ()
 	return *m_file;
 }
 
-FileUtility::DirectoryIterator& FileUtility::iterateDirectory(const char* openMode)
+void FileUtility::initDirectoryIterator(const char* openMode)
 {
+	m_file->rewindDirectory();
 	m_DirectoryIterator.reset(new DirectoryIterator(*this, openMode));
+}
+
+FileUtility::DirectoryIterator FileUtility::begin()
+{
 	return *m_DirectoryIterator;
+}
+
+FileUtility::DirectoryIterator FileUtility::end()
+{
+	return DirectoryIterator();
 }
