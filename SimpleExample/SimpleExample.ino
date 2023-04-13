@@ -22,13 +22,26 @@ void setup()
 
 	Serial.println("RANGE");
 	rootDir.initDirectoryIterator();
-	for (auto entry : rootDir)
+	for (auto& entry : rootDir)
 		Serial.println(static_cast<File&>(entry).path());
 
 	Serial.println("EACH");
 	rootDir.initDirectoryIterator();
 	std::for_each(rootDir.begin(), rootDir.end(),
-		[](FileUtility entry) {Serial.println(static_cast<File&>(entry).path()); });
+		[](FileUtility& entry) {Serial.println(static_cast<File&>(entry).path()); });
+
+	Serial.println("Range & parent directory");
+	File subFolder=SD.open("/Private/Video");
+	FileUtility subDir(SD, subFolder);
+	subDir.initDirectoryIterator();
+	for (auto& entry : subDir)
+	{
+		File& a = entry;
+		Serial.println(a.path());
+
+		File b = entry.parent().parent();
+		Serial.println(b.path());
+	}
 	Serial.println("END TEST");
 }
 

@@ -15,16 +15,17 @@ FileUtility::DirectoryIterator::DirectoryIterator(FileUtility& root, const char*
 	if (!internalFile.isDirectory())
 		throw std::runtime_error("Is not directory");
 
-	m_entry = internalFile.openNextFile(m_openMode);
+	m_entryFile = internalFile.openNextFile(m_openMode);
 }
 
 FileUtility::DirectoryIterator::DirectoryIterator()
 {
 }
 
-FileUtility::DirectoryIterator::value_type FileUtility::DirectoryIterator::operator*()
+FileUtility::DirectoryIterator::reference FileUtility::DirectoryIterator::operator*()
 {
-	return FileUtility(*m_root->m_fs, m_entry);
+	m_entry = std::make_shared<FileUtility>(*m_root->m_fs, m_entryFile);
+	return *m_entry;
 }
 
 FileUtility::DirectoryIterator& FileUtility::DirectoryIterator::operator++(int)
@@ -34,16 +35,21 @@ FileUtility::DirectoryIterator& FileUtility::DirectoryIterator::operator++(int)
 	return temp;
 }
 
+FileUtility::DirectoryIterator::pointer FileUtility::DirectoryIterator::operator->()
+{
+	return m_entry.get();
+}
+
 FileUtility::DirectoryIterator& FileUtility::DirectoryIterator::operator++()
 {
 	File& internalFile = *m_root;
-	m_entry = internalFile.openNextFile(m_openMode);
+	m_entryFile = internalFile.openNextFile(m_openMode);
 	return *this;
 }
 
 bool FileUtility::DirectoryIterator::operator==(const DirectoryIterator& other) const
 {
-	return m_entry == other.m_entry;
+	return m_entryFile == other.m_entryFile;
 }
 
 bool FileUtility::DirectoryIterator::operator!=(const DirectoryIterator& other) const

@@ -56,11 +56,13 @@ public:
 	DirectoryIterator& operator++(int);
 	bool operator==(const DirectoryIterator& other) const;
 	bool operator!=(const DirectoryIterator& other) const;
-	value_type operator*();
+	reference operator*();
+	pointer operator->();
 
 private:
-	FileUtility* m_root=nullptr;
-	File m_entry;
+	FileUtility* m_root = nullptr;
+	File m_entryFile;
+	std::shared_ptr<FileUtility> m_entry;
 	const char* m_openMode = nullptr;
 };
 
