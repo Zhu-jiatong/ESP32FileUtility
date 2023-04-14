@@ -5,9 +5,10 @@
  Editor:	http://www.visualmicro.com
 */
 
+#include "DirectoryIterator.h"
 #include "FileUtility.h"
 
-FileUtility::DirectoryIterator::DirectoryIterator(FileUtility& root, const char* openMode)
+DirectoryIterator::DirectoryIterator(FileUtility& root, const char* openMode)
 	:m_openMode(openMode), m_root(&root)
 {
 	File& internalFile = *m_root;
@@ -18,51 +19,41 @@ FileUtility::DirectoryIterator::DirectoryIterator(FileUtility& root, const char*
 	m_entryFile = internalFile.openNextFile(m_openMode);
 }
 
-FileUtility::DirectoryIterator::DirectoryIterator()
+DirectoryIterator::DirectoryIterator()
 {
 }
 
-FileUtility::DirectoryIterator::reference FileUtility::DirectoryIterator::operator*()
+DirectoryIterator::reference DirectoryIterator::operator*()
 {
 	m_entry = std::make_shared<FileUtility>(*m_root->m_fs, m_entryFile);
 	return *m_entry;
 }
 
-FileUtility::DirectoryIterator& FileUtility::DirectoryIterator::operator++(int)
+DirectoryIterator& DirectoryIterator::operator++(int)
 {
 	DirectoryIterator temp(*this);
 	operator++();
 	return temp;
 }
 
-FileUtility::DirectoryIterator::pointer FileUtility::DirectoryIterator::operator->()
+DirectoryIterator::pointer DirectoryIterator::operator->()
 {
 	return m_entry.get();
 }
 
-FileUtility::DirectoryIterator& FileUtility::DirectoryIterator::operator++()
+DirectoryIterator& DirectoryIterator::operator++()
 {
 	File& internalFile = *m_root;
 	m_entryFile = internalFile.openNextFile(m_openMode);
 	return *this;
 }
 
-bool FileUtility::DirectoryIterator::operator==(const DirectoryIterator& other) const
+bool DirectoryIterator::operator==(const DirectoryIterator& other) const
 {
 	return m_entryFile == other.m_entryFile;
 }
 
-bool FileUtility::DirectoryIterator::operator!=(const DirectoryIterator& other) const
+bool DirectoryIterator::operator!=(const DirectoryIterator& other) const
 {
 	return !operator==(other);
-}
-
-FileUtility::DirectoryIterator FileUtility::DirectoryIterator::begin()
-{
-	return *this;
-}
-
-FileUtility::DirectoryIterator FileUtility::DirectoryIterator::end()
-{
-	return DirectoryIterator();
 }

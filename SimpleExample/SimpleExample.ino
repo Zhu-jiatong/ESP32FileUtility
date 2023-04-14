@@ -31,7 +31,7 @@ void setup()
 		[](FileUtility& entry) {Serial.println(static_cast<File&>(entry).path()); });
 
 	Serial.println("Range & parent directory");
-	File subFolder=SD.open("/Private/Video");
+	File subFolder = SD.open("/Private/Video");
 	FileUtility subDir(SD, subFolder);
 	subDir.initDirectoryIterator();
 	for (auto& entry : subDir)

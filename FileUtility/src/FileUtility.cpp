@@ -50,12 +50,12 @@ void FileUtility::initDirectoryIterator(const char* openMode)
 	m_DirectoryIterator.reset(new DirectoryIterator(*this, openMode));
 }
 
-FileUtility::DirectoryIterator FileUtility::begin()
+DirectoryIterator FileUtility::begin()
 {
 	return *m_DirectoryIterator;
 }
 
-FileUtility::DirectoryIterator FileUtility::end()
+DirectoryIterator FileUtility::end()
 {
 	return DirectoryIterator();
 }
